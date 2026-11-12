@@ -10,14 +10,18 @@ interface Props {
   level: NamingLevel
   /** 방금 만든 작품 그림 (있으면 옆에 작게 보여 줌) */
   picture?: string | null
+  /** 큰 감정을 이 묶음들 가운데에서만 고르기 (둘보다 적게 남으면 모두 보여 줌) */
+  only?: string[]
   onDone: (result: NameTagResult) => void
 }
 
 type Step = 'group' | 'size' | 'reason'
 
 /** 이름표 붙이기: 큰 감정 → 감정 크기(낱말) → 이유 문장. 모든 활동 끝에 같은 순서로 나옴 */
-export default function NameTag({ config, level, picture, onDone }: Props) {
-  const groups = config.groups.filter((g) => g.enabled)
+export default function NameTag({ config, level, picture, only, onDone }: Props) {
+  const enabled = config.groups.filter((g) => g.enabled)
+  const narrowed = only ? enabled.filter((g) => only.includes(g.key)) : enabled
+  const groups = narrowed.length >= 2 ? narrowed : enabled
   const [step, setStep] = useState<Step>('group')
   const [group, setGroup] = useState<ConfigGroup | null>(null)
   const [position, setPosition] = useState<number | null>(null)

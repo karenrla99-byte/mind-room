@@ -1,5 +1,6 @@
 import ColorRoom from './ColorRoom'
 import DrawPad from './DrawPad'
+import FaceRoom from './face/FaceRoom'
 import type { Activity } from './types'
 
 /**
@@ -7,7 +8,7 @@ import type { Activity } from './types'
  * (이름표만 붙이기는 활동이 아니라 따로 있는 버튼이에요: key 'nametag')
  */
 export const ACTIVITIES: Activity[] = [
-  { key: 'face', name: '표정방', say: '얼굴로 마음을 나타내요', color: '#FCE3A7', Component: null },
+  { key: 'face', name: '표정방', say: '얼굴로 마음을 나타내요', color: '#FCE3A7', Component: FaceRoom },
   { key: 'color', name: '색깔방', say: '색으로 마음을 나타내요', color: '#F7C8C9', Component: ColorRoom },
   { key: 'shape', name: '모양방', say: '모양으로 마음을 나타내요', color: '#B5DFAC', Component: null },
   { key: 'draw', name: '그림방', say: '그림으로 마음을 나타내요', color: '#A6CAFF', Component: DrawPad },

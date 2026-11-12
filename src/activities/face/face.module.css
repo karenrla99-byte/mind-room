@@ -1,0 +1,367 @@
+.room {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(260px, 440px);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 40px);
+}
+
+.stage {
+  position: relative;
+  width: min(calc(100vh - 190px), 54vw);
+  aspect-ratio: 1;
+  border: 4px solid var(--ink);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 6px 0 var(--ink);
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* 부품: 상자는 여백을 뺀 그림 크기, 안의 그림은 원본을 맞춰 넣음 */
+.part {
+  position: absolute;
+  pointer-events: none;
+}
+
+.part img {
+  position: absolute;
+  max-width: none;
+}
+
+.ghost {
+  filter: grayscale(1) brightness(0.5);
+  opacity: 0.3;
+}
+
+.now {
+  animation: beat 1.1s ease-in-out infinite;
+}
+
+@keyframes beat {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.pop {
+  animation: pop 0.35s cubic-bezier(0.3, 1.7, 0.5, 1);
+}
+
+@keyframes pop {
+  from {
+    scale: 0.4;
+  }
+}
+
+.movable {
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.picked {
+  outline: 4px dashed var(--sadness);
+  outline-offset: 6px;
+  border-radius: 10px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(6px, 1.5vh, 14px);
+  text-align: center;
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: clamp(1.5rem, 4.2vh, 2.3rem);
+}
+
+.chip {
+  padding: 0 14px 3px;
+  border: var(--line);
+  border-radius: 999px;
+}
+
+.targetPic {
+  width: clamp(64px, 12vh, 100px);
+  margin: -10px;
+}
+
+.hint {
+  font-size: clamp(0.95rem, 2.3vh, 1.15rem);
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.options {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  max-height: max(150px, calc(100vh - 540px));
+  overflow-y: auto;
+  padding: 4px 4px 10px;
+}
+
+.two {
+  grid-template-columns: 1fr;
+}
+
+.option {
+  min-height: clamp(64px, 11vh, 96px);
+  padding: 8px 12px;
+  border: var(--line);
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: 0 4px 0 var(--ink);
+  touch-action: none;
+  transition: transform 0.12s;
+}
+
+.option:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+.option[aria-pressed='true'] {
+  background: #fce3a7;
+}
+
+/* 고르는 칸의 부품 그림 */
+.thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: clamp(44px, 8vh, 72px);
+  container-type: size;
+  pointer-events: none;
+}
+
+.thumb span {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.thumb img {
+  position: absolute;
+  max-width: none;
+}
+
+.shake {
+  animation: shake 0.45s;
+}
+
+@keyframes shake {
+  20%,
+  60% {
+    transform: translateX(-9px);
+  }
+  40%,
+  80% {
+    transform: translateX(9px);
+  }
+}
+
+.steps {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+}
+
+.steps li {
+  padding: 4px 14px;
+  border: 2.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--card);
+  font-weight: 700;
+  opacity: 0.45;
+}
+
+.steps .stepNow {
+  opacity: 1;
+  background: #fce3a7;
+}
+
+.steps .stepDone {
+  opacity: 1;
+  background: var(--discomfort);
+}
+
+.back {
+  min-height: 44px;
+  padding: 0 8px;
+  border: 0;
+  background: none;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-decoration: underline;
+}
+
+.dragging {
+  position: fixed;
+  z-index: 30;
+  width: 190px;
+  height: 100px;
+  margin: -50px -95px;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 0 rgb(58 46 42 / 0.25));
+}
+
+.tabs {
+  display: flex;
+  padding: 4px;
+  border: var(--line);
+  border-radius: 999px;
+  background: var(--card);
+}
+
+.tabs button {
+  min-height: 48px;
+  padding: 0 clamp(10px, 1.4vw, 16px);
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+}
+
+.tabs button[aria-selected='true'] {
+  background: var(--ink);
+  color: #fff;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.controls button {
+  min-width: 52px;
+  min-height: 48px;
+  padding: 0 12px;
+  border: 2.5px solid var(--ink);
+  border-radius: 14px;
+  background: var(--card);
+  font-weight: 700;
+}
+
+.controls button:disabled,
+.side :global(.btn):disabled {
+  opacity: 0.35;
+}
+
+/* 방법 고르기 */
+.menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vh, 28px);
+}
+
+.modes {
+  width: min(100%, 900px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(10px, 2vw, 20px);
+}
+
+.mode {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-height: clamp(110px, 20vh, 170px);
+  justify-content: center;
+  padding: 12px;
+  border: var(--line);
+  border-radius: 26px;
+  box-shadow: 0 6px 0 var(--ink);
+  transition: transform 0.14s cubic-bezier(0.3, 1.6, 0.5, 1), box-shadow 0.14s;
+}
+
+.mode:active {
+  transform: translateY(6px);
+  box-shadow: none;
+}
+
+.mode strong {
+  font-family: var(--font-title);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 4vh, 2rem);
+}
+
+.mode span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.modeNum {
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: var(--line);
+  border-radius: 50%;
+  background: var(--card);
+  font-family: var(--font-title);
+  font-size: 1.3rem !important;
+}
+
+@media (orientation: portrait) {
+  .room {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    align-content: center;
+  }
+  .stage {
+    width: min(100%, calc(100vh - 648px));
+    min-width: min(100%, 280px);
+  }
+  .side {
+    width: 100%;
+    min-width: 0;
+  }
+  /* 세로 화면: 부품은 옆으로 넘기는 한 줄 */
+  .options {
+    display: flex;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: safe center;
+  }
+  .option {
+    flex: 0 0 clamp(130px, 22vw, 180px);
+  }
+  .freeHint {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .modes {
+    grid-template-columns: 1fr;
+  }
+}

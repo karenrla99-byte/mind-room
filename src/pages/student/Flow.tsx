@@ -26,6 +26,7 @@ export default function Flow() {
     inRoom ? null : { config: defaultConfig(), level: 3, allowed: true },
   )
   const [made, setMade] = useState<Blob | null>(null)
+  const [only, setOnly] = useState<string[] | undefined>(undefined)
   const [result, setResult] = useState<NameTagResult | null>(null)
   const [round, setRound] = useState(0)
   const [upload, setUpload] = useState<'idle' | 'busy' | 'done'>('idle')
@@ -61,6 +62,7 @@ export default function Flow() {
 
   const again = () => {
     setMade(null)
+    setOnly(undefined)
     setResult(null)
     setUpload('idle')
     setError('')
@@ -93,7 +95,15 @@ export default function Flow() {
   // 1. 만들기
   if (activity?.Component && !made) {
     const Make = activity.Component
-    return <Make key={round} onDone={setMade} />
+    return (
+      <Make
+        key={round}
+        onDone={(image, hint) => {
+          setOnly(hint?.groups)
+          setMade(image)
+        }}
+      />
+    )
   }
 
   // 2. 이름표 붙이기
@@ -104,6 +114,7 @@ export default function Flow() {
         config={setup.config}
         level={setup.level}
         picture={madeUrl}
+        only={only}
         onDone={(r) => {
           setResult(r)
           speak(r.reason && r.word ? `${r.reason} ${r.word}` : (r.word ?? r.groupName))
