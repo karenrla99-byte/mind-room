@@ -17,6 +17,7 @@ const COPY = [
   ['01_얼굴부품', 'face'],
   ['02_감정낱말그림', 'words'],
   ['03_모양조각', 'shapes'],
+  ['04_집과문', 'home', ''],
 ]
 
 const GROUP_KEYS = {
@@ -73,8 +74,8 @@ fs.mkdirSync(DATA, { recursive: true })
 // 1) 복사 + 4) bbox
 const bounds = {}
 let copied = 0
-for (const [from, to] of COPY) {
-  const srcDir = path.join(SRC, from, '완성')
+for (const [from, to, sub = '완성'] of COPY) {
+  const srcDir = path.join(SRC, from, sub)
   const outDir = path.join(OUT, to)
   fs.rmSync(outDir, { recursive: true, force: true })
   fs.mkdirSync(outDir, { recursive: true })
@@ -82,7 +83,7 @@ for (const [from, to] of COPY) {
     if (!name.endsWith('.png')) continue
     fs.copyFileSync(path.join(srcDir, name), path.join(outDir, name))
     copied++
-    if (to !== 'words') bounds[name.replace('.png', '')] = bbox(path.join(srcDir, name))
+    if (to === 'face' || to === 'shapes') bounds[name.replace('.png', '')] = bbox(path.join(srcDir, name))
   }
 }
 fs.writeFileSync(path.join(DATA, 'partBounds.json'), JSON.stringify(bounds, null, 2) + '\n')
