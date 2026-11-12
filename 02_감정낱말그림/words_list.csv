@@ -1,0 +1,51 @@
+﻿파일 이름,큰 감정,"크기(1~5, 대표)",감정 낱말,출처,몸 색(HEX),완성 여부
+group_joy.png,기쁨,대표,기쁨,-,#F9C74F,O
+joy_1.png,기쁨,1,편안해요,포스터1,#FDEECA,O
+joy_2.png,기쁨,2,기대돼요,포스터1,#FCE3A7,O
+joy_3.png,기쁨,3,즐거워요,포스터1,#FAD783,O
+joy_4.png,기쁨,4,뿌듯해요,포스터1,#F9CD64,O
+joy_5.png,기쁨,5,행복해요,포스터1,#F9C74F,O
+joy_x1.png,기쁨,4,신나요,포스터2,#F9CD64,O
+joy_x2.png,기쁨,3,감사해요,포스터2,#FAD783,O
+group_surprise.png,놀람,대표,놀람,-,#F8961E,O
+surprise_1.png,놀람,1,호기심이 생겨요,포스터1,#FCDFBB,O
+surprise_2.png,놀람,2,신기해요,포스터1,#FBCA8E,O
+surprise_3.png,놀람,3,감탄해요,포스터1,#FAB561,O
+surprise_4.png,놀람,4,당황해요,포스터1,#F8A239,O
+surprise_5.png,놀람,5,충격받았어요,포스터1,#F8961E,O
+surprise_x1.png,놀람,1,궁금해요,포스터2,#FCDFBB,O
+surprise_x2.png,놀람,3,놀라워요,포스터2,#FAB561,O
+group_anger.png,분노,대표,분노,-,#E5484D,O
+anger_1.png,분노,1,답답해요,포스터1,#F7C8C9,O
+anger_2.png,분노,2,불만스러워요,포스터1,#F2A3A6,O
+anger_3.png,분노,3,짜증나요,포스터1,#EC7E82,O
+anger_4.png,분노,4,신경질 나요,포스터1,#E85D62,O
+anger_5.png,분노,5,화나요,포스터1,#E5484D,O
+anger_x1.png,분노,2,예민해요,포스터2,#F2A3A6,O
+group_discomfort.png,불편함,대표,불편함,-,#6BBF59,O
+discomfort_1.png,불편함,1,어색해요,포스터1,#D2EBCD,O
+discomfort_2.png,불편함,2,찝찝해요,포스터1,#B5DFAC,O
+discomfort_3.png,불편함,3,억울해요,포스터1,#97D28A,O
+discomfort_4.png,불편함,4,미워요,포스터1,#7CC66C,O
+discomfort_5.png,불편함,5,불쾌해요,포스터1,#6BBF59,O
+discomfort_x1.png,불편함,1,부끄러워요,포스터2,#D2EBCD,O
+group_sadness.png,슬픔,대표,슬픔,-,#4D96FF,O
+sadness_1.png,슬픔,1,서운해요,포스터1,#C9DFFF,O
+sadness_2.png,슬픔,2,속상해요,포스터1,#A6CAFF,O
+sadness_3.png,슬픔,3,실망했어요,포스터1,#82B5FF,O
+sadness_4.png,슬픔,4,외로워요,포스터1,#62A2FF,O
+sadness_5.png,슬픔,5,우울해요,포스터1,#4D96FF,O
+sadness_x1.png,슬픔,4,쓸쓸해요,포스터2,#62A2FF,O
+sadness_x2.png,슬픔,3,슬퍼요,포스터2,#82B5FF,O
+group_fear.png,두려움,대표,두려움,-,#5B5FC7,O
+fear_1.png,두려움,1,걱정돼요,포스터1,#CDCFEE,O
+fear_2.png,두려움,2,불안해요,포스터1,#ADAFE3,O
+fear_3.png,두려움,3,초조해요,포스터1,#8C8FD7,O
+fear_4.png,두려움,4,긴장돼요,포스터1,#6E72CD,O
+fear_5.png,두려움,5,무서워요,포스터1,#5B5FC7,O
+group_lethargy.png,무기력함,대표,무기력함,-,#A27FD6,O
+lethargy_1.png,무기력함,1,심심해요,포스터1,#E3D8F2,O
+lethargy_2.png,무기력함,2,지루해요,포스터1,#D0BFEA,O
+lethargy_3.png,무기력함,3,피곤해요,포스터1,#BDA5E2,O
+lethargy_4.png,무기력함,4,귀찮아요,포스터1,#AD8EDA,O
+lethargy_5.png,무기력함,5,의욕이 없어요,포스터1,#A27FD6,O
