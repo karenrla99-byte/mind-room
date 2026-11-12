@@ -1,0 +1,354 @@
+.step {
+  flex: 1;
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 2vh, 20px);
+  text-align: center;
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: clamp(1.8rem, 5.4vh, 3rem);
+}
+
+.chip {
+  padding: 2px 18px 4px;
+  border: var(--line);
+  border-radius: 999px;
+  font-size: 0.8em;
+}
+
+.hint {
+  font-size: clamp(1rem, 2.6vh, 1.3rem);
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+.actions :global(.btn):disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* 그림 */
+.pic {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.noPic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noPic span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62%;
+  aspect-ratio: 1;
+  border: var(--line);
+  border-radius: 50%;
+  font-size: 2rem;
+  line-height: 1;
+  container-type: inline-size;
+}
+
+/* 1. 큰 감정 카드 */
+.groups {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(8px, 1.6vw, 18px);
+}
+
+.groupCard {
+  flex: 0 1 clamp(120px, 12.4vw, 150px);
+  min-width: 108px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 4px 12px;
+  border: var(--line);
+  border-radius: 24px;
+  box-shadow: 0 6px 0 var(--ink);
+  font-family: var(--font-title);
+  font-size: clamp(1.3rem, 3.4vh, 1.8rem);
+  line-height: 1.1;
+  transition: transform 0.14s cubic-bezier(0.3, 1.6, 0.5, 1), box-shadow 0.14s;
+}
+
+.groupCard .pic {
+  width: 112%;
+  margin: -6% -6% -8%;
+  filter: drop-shadow(0 2px 0 rgb(58 46 42 / 0.25));
+}
+
+.groupCard:hover {
+  transform: translateY(-4px) rotate(-1.5deg);
+}
+
+.groupCard:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+/* 2. 수직선 */
+.line {
+  width: 100%;
+  /* 수직선은 가운데 80%, 낱말 칸은 양옆으로 반 칸씩 더 넓게(=100%) */
+  padding: 0 10%;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: end;
+  /* 칸 가운데가 수직선 눈금 위에 오게 양옆으로 반 칸씩 넓힘 */
+  margin: 0 -12.5%;
+  width: 125%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px 12px;
+  border-radius: 20px;
+  transition: background 0.15s;
+}
+
+.here {
+  background: rgb(58 46 42 / 0.07);
+}
+
+.wordCard {
+  width: min(100%, 150px);
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 4px 8px;
+  border: var(--line);
+  border-radius: 18px;
+  box-shadow: 0 4px 0 var(--ink);
+  font-family: var(--font-title);
+  font-size: clamp(0.82rem, 1.75vw, 1.25rem);
+  line-height: 1.15;
+  word-break: keep-all;
+  transition: transform 0.14s cubic-bezier(0.3, 1.6, 0.5, 1), box-shadow 0.14s;
+}
+
+.wordCard .pic {
+  width: min(100%, 15vh);
+  margin: -4% 0 -8%;
+}
+
+.on {
+  transform: translateY(-6px) scale(1.07);
+  box-shadow: 0 8px 0 var(--ink);
+  outline: 4px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.trackWrap {
+  padding-top: 8px;
+}
+
+.track {
+  position: relative;
+  height: 28px;
+  border: var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+/* 손가락으로 잡기 쉽게 위아래로 넓힌 영역 */
+.track::before {
+  content: '';
+  position: absolute;
+  inset: -26px -36px;
+}
+
+.tick {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.handle {
+  position: absolute;
+  top: 50%;
+  width: 68px;
+  height: 68px;
+  margin: -34px;
+  border: 4px solid var(--ink);
+  border-radius: 50%;
+  box-shadow: 0 5px 0 var(--ink);
+  cursor: grab;
+  transition: left 0.18s cubic-bezier(0.3, 1.5, 0.5, 1), background 0.15s;
+}
+
+.handle:active {
+  cursor: grabbing;
+}
+
+.waiting {
+  animation: nudge 1.4s ease-in-out infinite;
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(16px);
+  }
+}
+
+.ends {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px -8% 0;
+  font-family: var(--font-title);
+  font-size: clamp(0.95rem, 2.4vh, 1.2rem);
+  color: var(--ink-soft);
+}
+
+/* 3. 이유 문장 */
+.sentence {
+  width: min(100%, 760px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px 14px 8px;
+  border: var(--line);
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: 0 5px 0 var(--ink);
+}
+
+.sentence .sentencePic {
+  flex: none;
+  width: clamp(90px, 18vh, 150px);
+}
+
+.sentenceText {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-title);
+  font-size: clamp(1.3rem, 3.6vh, 1.9rem);
+}
+
+.sentenceText input {
+  flex: 1 1 220px;
+  min-width: 0;
+  min-height: 64px;
+  padding: 8px 16px;
+  border: 2.5px dashed var(--ink);
+  border-radius: 16px;
+  background: var(--cream);
+  font: inherit;
+  color: inherit;
+}
+
+.sentenceText strong {
+  padding: 6px 16px 8px;
+  border: var(--line);
+  border-radius: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* 이름표 카드 */
+.tag {
+  width: min(100%, 340px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px 22px;
+  border: var(--line);
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: 0 6px 0 var(--ink);
+}
+
+.tag .tagPic {
+  width: 78%;
+  margin: -4% 0 -8%;
+}
+
+.tagName {
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.tagWord {
+  padding: 4px 22px 6px;
+  border: var(--line);
+  border-radius: 999px;
+  font-family: var(--font-title);
+  font-size: 1.7rem;
+}
+
+.meter {
+  display: flex;
+  gap: 6px;
+}
+
+.meter span {
+  width: 30px;
+  height: 22px;
+  border: 2.5px solid var(--ink);
+  border-radius: 7px;
+  background: var(--card);
+}
+
+.tagReason {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .wordCard {
+    padding-inline: 1px;
+  }
+  .handle {
+    width: 60px;
+    height: 60px;
+    margin: -30px;
+  }
+}

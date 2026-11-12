@@ -259,6 +259,12 @@ export default function RoomManage() {
       </section>
 
       <section className={styles.panel}>
+        <h2>감정 목록</h2>
+        <p className={styles.muted}>이름표 붙이기에 나오는 큰 감정과 낱말, 수직선 위치, 단계를 이 방에 맞게 고쳐요.</p>
+        <Link to={`/teacher/room/${id}/emotions`} className="btn">감정 목록 고치기</Link>
+      </section>
+
+      <section className={styles.panel}>
         <h2>방 지우기</h2>
         <p className={styles.muted}>방을 지우면 명단, 작품, 감정 기록이 모두 지워져요. 지우기 전에 PIN을 한 번 더 물어봐요.</p>
         <button type="button" className={`btn ${styles.dangerBtn}`} disabled={busy} onClick={removeRoom}>이 방 지우기</button>

@@ -26,7 +26,7 @@ export class ApiError extends Error {
   }
 }
 
-const KNOWN = ['NOT_TEACHER', 'ROOM_NOT_FOUND', 'BAD_PIN', 'BAD_NAME', 'TOO_MANY_STUDENTS']
+const KNOWN = ['NOT_TEACHER', 'ROOM_NOT_FOUND', 'BAD_PIN', 'BAD_NAME', 'TOO_MANY_STUDENTS', 'SETTINGS_TOO_BIG']
 
 async function rpc<T>(fn: string, args: Record<string, unknown>): Promise<T> {
   const { data, error } = await supabase.rpc(fn, args)
@@ -50,6 +50,8 @@ export function errorText(e: unknown): string {
       return '이름은 1~20자로 적어요. (방 이름은 40자까지)'
     case 'TOO_MANY_STUDENTS':
       return '한 방에 학생은 60명까지 넣을 수 있어요.'
+    case 'SETTINGS_TOO_BIG':
+      return '감정 목록이 너무 길어요. 낱말을 조금 줄여요.'
     default:
       return '연결이 잘 안 돼요. 잠시 뒤에 다시 해 봐요.'
   }
@@ -64,6 +66,8 @@ export const api = {
   teacherGetRoom: (id: string, key: string) => rpc<Room>('teacher_get_room', { p_room_id: id, p_teacher_key: key }),
   updateRoom: (id: string, key: string, patch: { name?: string; is_open?: boolean }) =>
     rpc<Room>('update_room', { p_room_id: id, p_teacher_key: key, p_name: patch.name ?? null, p_is_open: patch.is_open ?? null }),
+  updateSettings: (id: string, key: string, settings: Record<string, unknown>) =>
+    rpc<Room>('update_room_settings', { p_room_id: id, p_teacher_key: key, p_settings: settings }),
   deleteRoom: (id: string, key: string, pin: string) =>
     rpc<PinResult>('delete_room', { p_room_id: id, p_teacher_key: key, p_pin: pin }),
   addStudents: (id: string, key: string, names: string[]) =>

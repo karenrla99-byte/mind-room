@@ -416,3 +416,193 @@
   flex: none;
   white-space: nowrap;
 }
+
+/* 감정 목록 고치기 */
+.levels {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.levelBtn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 64px;
+  padding: 12px 16px;
+  border: 2.5px solid var(--ink);
+  border-radius: 16px;
+  background: var(--card);
+  text-align: left;
+}
+
+.levelBtn strong {
+  font-family: var(--font-title);
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
+.levelBtn span {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.levelBtn[aria-checked='true'] {
+  background: #fce3a7;
+  box-shadow: 0 4px 0 var(--ink);
+}
+
+.off > :not(.groupHead) {
+  display: none;
+}
+
+.off {
+  opacity: 0.6;
+}
+
+.groupHead {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.page .groupPic {
+  flex: none;
+  width: 72px;
+  margin: -10px;
+}
+
+.page .groupHead > input {
+  flex: 1 1 160px;
+  width: auto;
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+}
+
+.colorPick,
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-weight: 600;
+}
+
+.page .colorPick input {
+  width: 56px;
+  min-height: 44px;
+  padding: 2px;
+}
+
+.page .check input {
+  width: 26px;
+  min-height: 26px;
+  height: 26px;
+  padding: 0;
+  accent-color: var(--ink);
+}
+
+.wordRows {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wordRows li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 2px solid #eadfce;
+  border-radius: 14px;
+  background: var(--cream);
+}
+
+.page .wordPic {
+  flex: none;
+  width: 56px;
+  margin: -6px;
+}
+
+.page .wordRows input,
+.page .wordRows select {
+  width: auto;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--card);
+  font: inherit;
+  color: inherit;
+}
+
+.page .wordRows .wordName {
+  flex: 1 1 150px;
+  font-weight: 600;
+}
+
+.page .wordRows .emoji {
+  width: 60px;
+  text-align: center;
+}
+
+.page .wordRows select {
+  width: auto;
+}
+
+.sizePick {
+  display: flex;
+}
+
+.sizePick button {
+  width: 40px;
+  height: 44px;
+  border: 2px solid var(--ink);
+  margin-left: -2px;
+  background: var(--card);
+  font-weight: 700;
+}
+
+.sizePick button:first-child {
+  margin-left: 0;
+  border-radius: 12px 0 0 12px;
+}
+
+.sizePick button:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+.sizePick button[aria-checked='true'] {
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+.saveBar {
+  position: sticky;
+  bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 12px 16px;
+  border: var(--line);
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: 0 5px 0 var(--ink);
+}
+
+.ok {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #e4f4df;
+  color: #2b6a1f;
+  font-weight: 600;
+}

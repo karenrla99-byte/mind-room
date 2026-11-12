@@ -8,6 +8,8 @@ import RoomManage from './pages/teacher/RoomManage'
 import Join from './pages/student/Join'
 import PickName from './pages/student/PickName'
 import RoomHome from './pages/student/RoomHome'
+import TagTry from './pages/student/TagTry'
+import EmotionEdit from './pages/teacher/EmotionEdit'
 
 export default function App() {
   return (
@@ -19,10 +21,9 @@ export default function App() {
         <Route path="join" element={<Join />} />
         <Route path="join/:code" element={<PickName />} />
         <Route path="room/:code" element={<RoomHome />} />
-        <Route
-          path="solo"
-          element={<ComingSoon title="나의방" image="/assets/words/joy_1.png" text="혼자 만드는 방은 곧 열려요." />}
-        />
+        <Route path="room/:code/tag" element={<TagTry />} />
+        <Route path="teacher/room/:id/emotions" element={<EmotionEdit />} />
+        <Route path="solo" element={<TagTry />} />
         <Route path="keys" element={<KeyRoom />} />
         <Route
           path="*"
