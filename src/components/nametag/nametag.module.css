@@ -352,3 +352,30 @@
     margin: -30px;
   }
 }
+
+.tagWork {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  margin-top: 8px;
+  border: var(--line);
+  border-radius: 18px;
+  background: #fff;
+}
+
+.made {
+  width: clamp(110px, 22vh, 200px);
+  aspect-ratio: 1;
+  object-fit: contain;
+  border: var(--line);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 5px 0 var(--ink);
+  transform: rotate(-3deg);
+}
+
+/* 작품 그림이 들어간 이름표는 화면 높이에 맞춰 작게 */
+.tag:has(.tagWork) {
+  width: min(100%, clamp(210px, 33vh, 340px));
+  padding-top: 12px;
+}

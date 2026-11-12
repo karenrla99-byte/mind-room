@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import QRCode from 'qrcode'
+import { ACTIVITIES } from '../../activities'
 import { api, errorText, type Room, type Student } from '../../lib/api'
 import { myRooms } from '../../lib/myRooms'
 import { downloadSampleCsv, namesFromCsvFile, namesFromText } from '../../lib/names'
@@ -161,6 +162,12 @@ export default function RoomManage() {
     }
   }
 
+  const off = Array.isArray(room.settings.activitiesOff) ? (room.settings.activitiesOff as string[]) : []
+  const toggleActivity = (aKey: string) => {
+    const next = off.includes(aKey) ? off.filter((k) => k !== aKey) : [...off, aKey]
+    void run(() => api.updateSettings(id, key, { ...room.settings, activitiesOff: next }))
+  }
+
   const rename = async () => {
     const name = prompt('방 이름을 바꿔요', room.name)?.trim()
     if (!name || name === room.name) return
@@ -291,6 +298,30 @@ export default function RoomManage() {
             <button type="button" className={styles.link} onClick={downloadSampleCsv}>예시 파일 내려받기</button>
           </div>
         </div>
+      </section>
+
+      <section className={styles.panel}>
+        <h2>활동</h2>
+        <p className={styles.muted}>이 방에서 학생에게 보여 줄 활동을 골라요.</p>
+        <ul className={styles.activityList}>
+          {[...ACTIVITIES.map((a) => ({ key: a.key, name: a.name, ready: !!a.Component })), { key: 'nametag', name: '이름표 붙이기', ready: true }].map((a) => (
+            <li key={a.key}>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={a.ready && !off.includes(a.key)}
+                aria-label={a.name}
+                className={styles.switch}
+                disabled={busy || !a.ready}
+                onClick={() => toggleActivity(a.key)}
+              >
+                <span />
+              </button>
+              <strong>{a.name}</strong>
+              {!a.ready && <span className={styles.muted}>준비 중이에요</span>}
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className={styles.panel}>

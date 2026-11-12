@@ -8,13 +8,15 @@ import styles from './nametag.module.css'
 interface Props {
   config: EmotionConfig
   level: NamingLevel
+  /** 방금 만든 작품 그림 (있으면 옆에 작게 보여 줌) */
+  picture?: string | null
   onDone: (result: NameTagResult) => void
 }
 
 type Step = 'group' | 'size' | 'reason'
 
 /** 이름표 붙이기: 큰 감정 → 감정 크기(낱말) → 이유 문장. 모든 활동 끝에 같은 순서로 나옴 */
-export default function NameTag({ config, level, onDone }: Props) {
+export default function NameTag({ config, level, picture, onDone }: Props) {
   const groups = config.groups.filter((g) => g.enabled)
   const [step, setStep] = useState<Step>('group')
   const [group, setGroup] = useState<ConfigGroup | null>(null)
@@ -62,7 +64,8 @@ export default function NameTag({ config, level, onDone }: Props) {
   if (step === 'group') {
     return (
       <div className={styles.step}>
-        <h1 className={styles.title}>지금 내 마음은 어때요?</h1>
+        {picture && <img className={styles.made} src={picture} alt="내가 만든 작품" />}
+        <h1 className={styles.title}>{picture ? '이 작품의 마음은 어때요?' : '지금 내 마음은 어때요?'}</h1>
         <div className={styles.groups}>
           {groups.map((g) => (
             <button

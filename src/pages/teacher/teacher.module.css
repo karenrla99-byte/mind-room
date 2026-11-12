@@ -633,3 +633,29 @@
   background: none;
   border-radius: 12px;
 }
+
+.activityList {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.activityList li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.activityList strong {
+  font-family: var(--font-title);
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
+.switch:disabled {
+  opacity: 0.4;
+}
