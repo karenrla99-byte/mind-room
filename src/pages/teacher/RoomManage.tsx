@@ -4,6 +4,7 @@ import QRCode from 'qrcode'
 import { api, errorText, type Room, type Student } from '../../lib/api'
 import { myRooms } from '../../lib/myRooms'
 import { downloadSampleCsv, namesFromCsvFile, namesFromText } from '../../lib/names'
+import { assetUrl, removeRoomAssets, removeWorkFiles, uploadRoomAsset } from '../../lib/works'
 import styles from './teacher.module.css'
 
 export default function RoomManage() {
@@ -23,6 +24,8 @@ export default function RoomManage() {
   const [paste, setPaste] = useState('')
   const [editing, setEditing] = useState<{ id: string; name: string } | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
+  const photoRef = useRef<HTMLInputElement>(null)
+  const photoFor = useRef<string>('')
 
   const joinUrl = room ? `${location.origin}/join/${room.code}` : ''
 
@@ -138,6 +141,26 @@ export default function RoomManage() {
     void run(() => api.deleteStudent(id, key, s.id))
   }
 
+  const pickPhoto = (studentId: string) => {
+    photoFor.current = studentId
+    photoRef.current?.click()
+  }
+
+  const addPhoto = async (file: File | undefined) => {
+    if (photoRef.current) photoRef.current.value = ''
+    if (!file) return
+    setBusy(true)
+    setError('')
+    try {
+      const path = await uploadRoomAsset(id, file)
+      setRoom({ ...room, students: await api.setStudentImage(id, key, photoFor.current, path) })
+    } catch {
+      setError('그림을 올리지 못했어요. 사진이나 그림 파일인지 확인해요.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
   const rename = async () => {
     const name = prompt('방 이름을 바꿔요', room.name)?.trim()
     if (!name || name === room.name) return
@@ -150,8 +173,12 @@ export default function RoomManage() {
     setBusy(true)
     setError('')
     try {
+      // 방을 지운 뒤 작품 그림 파일도 치우려고 경로를 먼저 모아 둠
+      const paths = (await api.getWorks(id).catch(() => [])).map((w) => w.image_path)
       const res = await api.deleteRoom(id, key, pin.trim())
       if (res === 'ok') {
+        void removeWorkFiles(paths)
+        void removeRoomAssets(room)
         myRooms.remove(id)
         navigate('/teacher')
       } else {
@@ -196,6 +223,7 @@ export default function RoomManage() {
         <div className={styles.qrBox}>
           {qr && <img src={qr} alt="입장 QR 코드" />}
           <button type="button" className="btn btn-yellow" onClick={() => setShowBig(true)}>크게 보여 주기</button>
+          <Link to={`/gallery/${room.code}`} className="btn">전시방 열기</Link>
         </div>
       </section>
 
@@ -203,7 +231,8 @@ export default function RoomManage() {
 
       <section className={styles.panel}>
         <h2>학생 명단 <span className={styles.count}>{students.length}명</span></h2>
-        <p className={styles.muted}>학생은 여기 적힌 이름 버튼을 눌러 들어와요.</p>
+        <p className={styles.muted}>학생은 여기 적힌 이름 버튼을 눌러 들어와요. ＋를 눌러 사진이나 그림을 넣으면 이름 버튼에 같이 보여요.</p>
+        <input ref={photoRef} type="file" accept="image/*" hidden onChange={(e) => addPhoto(e.target.files?.[0])} />
 
         {students.length > 0 && (
           <ol className={styles.students}>
@@ -218,7 +247,13 @@ export default function RoomManage() {
                   </form>
                 ) : (
                   <>
+                    <button type="button" className={styles.photo} aria-label={`${s.name} 사진 넣기`} disabled={busy} onClick={() => pickPhoto(s.id)}>
+                      {s.image_path ? <img src={assetUrl(s.image_path)} alt="" /> : '＋'}
+                    </button>
                     <span className={styles.studentName}>{s.name}</span>
+                    {s.image_path && (
+                      <button type="button" className={styles.small} disabled={busy} onClick={() => run(() => api.setStudentImage(id, key, s.id, null))}>사진 빼기</button>
+                    )}
                     <button type="button" className={styles.icon} aria-label={`${s.name} 위로`} disabled={busy || i === 0} onClick={() => move(i, -1)}>↑</button>
                     <button type="button" className={styles.icon} aria-label={`${s.name} 아래로`} disabled={busy || i === students.length - 1} onClick={() => move(i, 1)}>↓</button>
                     <button type="button" className={styles.small} disabled={busy} onClick={() => setEditing({ id: s.id, name: s.name })}>고치기</button>

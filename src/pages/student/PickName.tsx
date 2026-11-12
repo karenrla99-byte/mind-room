@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api, type Room, type Student } from '../../lib/api'
 import { saveSession } from '../../lib/session'
 import { speak } from '../../lib/tts'
+import { assetUrl } from '../../lib/works'
 import styles from './student.module.css'
 
 const TINTS = ['#FCE3A7', '#FBCA8E', '#F7C8C9', '#B5DFAC', '#A6CAFF', '#CDCFEE', '#D0BFEA']
@@ -38,7 +39,7 @@ export default function PickName() {
   if (failed) return <Notice image="surprise_4" title="연결이 잘 안 돼요" text="잠시 뒤에 다시 해 봐요." />
   if (room === undefined) return <div className={styles.page}><p className={styles.message}>방을 찾고 있어요…</p></div>
   if (room === null) return <Notice image="surprise_4" title="방을 찾지 못했어요" text="번호를 다시 눌러요." />
-  if (!room.is_open) return <Notice image="lethargy_3" title="지금은 방이 닫혀 있어요" text="선생님이 방을 열면 들어올 수 있어요." />
+  if (!room.is_open) return <Notice image="lethargy_3" title="지금은 방이 닫혀 있어요" text="전시방은 볼 수 있어요." gallery={room.code} />
   if (room.students.length === 0) return <Notice image="surprise_1" title="아직 이름이 없어요" text="선생님이 이름을 넣으면 들어올 수 있어요." />
 
   return (
@@ -54,6 +55,7 @@ export default function PickName() {
             style={{ background: TINTS[i % TINTS.length] }}
             onClick={() => pick(s)}
           >
+            {s.image_path && <img src={assetUrl(s.image_path)} alt="" />}
             {s.name}
           </button>
         ))}
@@ -62,13 +64,14 @@ export default function PickName() {
   )
 }
 
-function Notice({ image, title, text }: { image: string; title: string; text: string }) {
+function Notice({ image, title, text, gallery }: { image: string; title: string; text: string; gallery?: string }) {
   return (
     <div className={styles.page}>
       <img className={styles.hero} src={`/assets/words/${image}.png`} alt="" />
       <h1 className={styles.title}>{title}</h1>
       <p className={styles.message}>{text}</p>
-      <Link to="/join" className="btn btn-yellow">번호 다시 누르기</Link>
+      {gallery && <Link to={`/gallery/${gallery}`} className="btn btn-yellow">전시방 보기</Link>}
+      <Link to="/join" className={gallery ? 'btn' : 'btn btn-yellow'}>번호 다시 누르기</Link>
     </div>
   )
 }

@@ -9,6 +9,7 @@ import Join from './pages/student/Join'
 import PickName from './pages/student/PickName'
 import RoomHome from './pages/student/RoomHome'
 import TagTry from './pages/student/TagTry'
+import Gallery from './pages/gallery/Gallery'
 import EmotionEdit from './pages/teacher/EmotionEdit'
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="room/:code" element={<RoomHome />} />
         <Route path="room/:code/tag" element={<TagTry />} />
         <Route path="teacher/room/:id/emotions" element={<EmotionEdit />} />
+        <Route path="gallery/:code" element={<Gallery />} />
         <Route path="solo" element={<TagTry />} />
         <Route path="keys" element={<KeyRoom />} />
         <Route

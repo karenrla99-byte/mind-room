@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import WordPicture from '../../components/nametag/WordPicture'
 import { api, errorText, type Room } from '../../lib/api'
@@ -13,6 +13,7 @@ import {
   type NamingLevel,
 } from '../../lib/emotionConfig'
 import { myRooms } from '../../lib/myRooms'
+import { assetUrl, uploadRoomAsset } from '../../lib/works'
 import styles from './teacher.module.css'
 
 const LEVELS: { value: NamingLevel; label: string; text: string }[] = [
@@ -32,6 +33,8 @@ export default function EmotionEdit() {
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
+  const picRef = useRef<HTMLInputElement>(null)
+  const picFor = useRef('')
 
   useEffect(() => {
     if (!key) return
@@ -90,6 +93,24 @@ export default function EmotionEdit() {
     change({ ...config, words })
   }
 
+  const pickPicture = (wId: string) => {
+    picFor.current = wId
+    picRef.current?.click()
+  }
+  const addPicture = async (file: File | undefined) => {
+    if (picRef.current) picRef.current.value = ''
+    if (!file) return
+    setBusy(true)
+    setError('')
+    try {
+      patchWord(picFor.current, { image: assetUrl(await uploadRoomAsset(id, file)), emoji: undefined })
+    } catch {
+      setError('그림을 올리지 못했어요. 사진이나 그림 파일인지 확인해요.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
   const reset = () => {
     if (!confirm('감정 목록을 처음 기본값으로 되돌릴까요?\n[저장]을 눌러야 방에 적용돼요.')) return
     change(defaultConfig())
@@ -141,6 +162,8 @@ export default function EmotionEdit() {
         </div>
       </section>
 
+      <p className={styles.muted}>낱말 왼쪽 그림을 누르면 직접 그린 그림으로 바꿀 수 있어요. 다 고치면 아래 [저장]을 눌러요.</p>
+
       {config.groups.map((g) => {
         const words = config.words.filter((w) => w.group === g.key)
         return (
@@ -161,7 +184,9 @@ export default function EmotionEdit() {
             <ul className={styles.wordRows}>
               {words.map((w, i) => (
                 <li key={w.id}>
-                  <WordPicture image={w.image} emoji={w.emoji} color={shade(g.color, w.intensity)} className={styles.wordPic} />
+                  <button type="button" className={styles.picBtn} aria-label={`${w.word || '낱말'} 그림 바꾸기`} title="그림 바꾸기" disabled={busy} onClick={() => pickPicture(w.id)}>
+                    <WordPicture image={w.image} emoji={w.emoji} color={shade(g.color, w.intensity)} className={styles.wordPic} />
+                  </button>
                   <input className={styles.wordName} value={w.word} maxLength={12} placeholder="낱말 (~해요)" aria-label="감정 낱말" onChange={(e) => patchWord(w.id, { word: e.target.value })} />
                   {!w.image && (
                     <input className={styles.emoji} value={w.emoji ?? ''} maxLength={4} placeholder="🙂" aria-label="이모지" onChange={(e) => patchWord(w.id, { emoji: e.target.value || undefined })} />
@@ -194,6 +219,7 @@ export default function EmotionEdit() {
         )
       })}
 
+      <input ref={picRef} type="file" accept="image/*" hidden onChange={(e) => addPicture(e.target.files?.[0])} />
       <div className={styles.saveBar}>
         {error && <p className={styles.error} role="alert">{error}</p>}
         {message && <p className={styles.ok} role="status">{message}</p>}
