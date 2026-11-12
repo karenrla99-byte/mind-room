@@ -1,0 +1,113 @@
+:root {
+  --cream: #fff8ee;
+  --ink: #3a2e2a;
+  --card: #ffffff;
+  --ink-soft: #7a6a63;
+  --line: 3px solid var(--ink);
+  --radius: 20px;
+  --pop: 0 5px 0 var(--ink);
+
+  --joy: #f9c74f;
+  --surprise: #f8961e;
+  --anger: #e5484d;
+  --discomfort: #6bbf59;
+  --sadness: #4d96ff;
+  --fear: #5b5fc7;
+  --lethargy: #a27fd6;
+
+  --font-body: 'Pretendard Variable', Pretendard, -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-title: 'Jua', var(--font-body);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.2;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 4px solid var(--sadness);
+  outline-offset: 3px;
+}
+
+/* 스티커 버튼: 갈색 테두리 + 아래로 밀린 단색 그림자, 누르면 쏙 들어감 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 64px;
+  min-width: 64px;
+  padding: 10px 26px;
+  border: var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--pop);
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  text-decoration: none;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.btn:active {
+  transform: translateY(5px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.btn-yellow {
+  background: var(--joy);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
