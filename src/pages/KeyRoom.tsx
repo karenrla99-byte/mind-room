@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { setSettings, useSettings } from '../lib/settings'
 import { speak, stopSpeaking, ttsSupported } from '../lib/tts'
 import styles from './Page.module.css'
@@ -41,7 +42,9 @@ export default function KeyRoom() {
           소리 들어 보기
         </button>
 
-        <p className={styles.note}>내 방 목록과 방 설정은 다음 단계에서 여기에 생겨요.</p>
+        <Link to="/teacher" className="btn btn-yellow">
+          내 방 목록 열기
+        </Link>
       </section>
     </div>
   )

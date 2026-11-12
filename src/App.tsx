@@ -3,20 +3,22 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import KeyRoom from './pages/KeyRoom'
 import ComingSoon from './pages/ComingSoon'
+import TeacherHome from './pages/teacher/TeacherHome'
+import RoomManage from './pages/teacher/RoomManage'
+import Join from './pages/student/Join'
+import PickName from './pages/student/PickName'
+import RoomHome from './pages/student/RoomHome'
 
 export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
-        <Route
-          path="teacher"
-          element={<ComingSoon title="우리 반 마음방 만들기" image="/assets/words/joy_2.png" text="선생님 방은 다음 단계에서 만들어요." />}
-        />
-        <Route
-          path="join"
-          element={<ComingSoon title="마음방 들어가기" image="/assets/words/surprise_1.png" text="방 번호로 들어가는 문은 다음 단계에서 열려요." />}
-        />
+        <Route path="teacher" element={<TeacherHome />} />
+        <Route path="teacher/room/:id" element={<RoomManage />} />
+        <Route path="join" element={<Join />} />
+        <Route path="join/:code" element={<PickName />} />
+        <Route path="room/:code" element={<RoomHome />} />
         <Route
           path="solo"
           element={<ComingSoon title="나의방" image="/assets/words/joy_1.png" text="혼자 만드는 방은 곧 열려요." />}
