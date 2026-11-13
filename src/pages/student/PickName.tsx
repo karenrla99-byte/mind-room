@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api, type Room, type Student } from '../../lib/api'
 import { saveSession } from '../../lib/session'
@@ -52,7 +52,7 @@ export default function PickName() {
             key={s.id}
             type="button"
             className={styles.nameBtn}
-            style={{ background: TINTS[i % TINTS.length] }}
+            style={{ '--tone': TINTS[i % TINTS.length] } as CSSProperties}
             onClick={() => pick(s)}
           >
             {s.image_path && <img src={assetUrl(s.image_path)} alt="" />}

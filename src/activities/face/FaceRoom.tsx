@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import { speak } from '../../lib/tts'
 import type { ActivityProps } from '../types'
 import FreeFace from './FreeFace'
@@ -39,7 +39,7 @@ export default function FaceRoom({ onDone }: ActivityProps) {
       <h1 className={styles.title}>어떻게 만들까요?</h1>
       <div className={styles.modes}>
         {MODES.map((m, i) => (
-          <button key={m.key} type="button" className={styles.mode} style={{ background: m.color }} onClick={() => { setMode(m.key); speak(m.name) }}>
+          <button key={m.key} type="button" className={styles.mode} style={{ '--tone': m.color } as CSSProperties} onClick={() => { setMode(m.key); speak(m.name) }}>
             <span className={styles.modeNum}>{i < 3 ? i + 1 : '★'}</span>
             <strong>{m.name}</strong>
             <span>{m.text}</span>

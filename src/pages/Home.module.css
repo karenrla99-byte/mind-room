@@ -28,7 +28,8 @@
   width: min(100%, 1180px, calc((100vh - 300px) * 2141 / 1168));
   min-width: min(100%, 420px);
   aspect-ratio: 2141 / 1168;
-  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: 40px;
 }
 
 .houseImg {
@@ -38,6 +39,7 @@
   width: 112.1%;
   max-width: none;
   pointer-events: none;
+  filter: drop-shadow(0 16px 14px rgb(96 66 40 / 0.22));
 }
 
 .door {
@@ -73,6 +75,7 @@
 }
 
 .doorImg {
+  filter: drop-shadow(0 6px 5px rgb(96 66 40 / 0.35));
   position: absolute;
   inset: 0;
   width: 100%;

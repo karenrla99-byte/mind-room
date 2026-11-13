@@ -15,7 +15,9 @@
   border: var(--line);
   border-radius: 24px;
   background: var(--card);
-  box-shadow: 0 6px 0 var(--ink);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
+  box-shadow: var(--shadow-3d);
   text-align: center;
 }
 
@@ -36,9 +38,9 @@
   justify-content: space-between;
   gap: 16px;
   padding: 14px 16px;
-  border: 2px solid #eadfce;
+  border: var(--line-in);
   border-radius: 16px;
-  background: var(--cream);
+  background: rgb(255 255 255 / 0.5);
   text-align: left;
 }
 
@@ -74,6 +76,8 @@
   border: var(--line);
   border-radius: 50%;
   background: var(--card);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
   transition: transform 0.15s;
 }
 

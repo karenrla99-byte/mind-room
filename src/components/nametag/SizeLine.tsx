@@ -1,4 +1,4 @@
-import { useRef, type KeyboardEvent, type PointerEvent } from 'react'
+import { useRef, type CSSProperties, type KeyboardEvent, type PointerEvent } from 'react'
 import { shade, textOn, type ConfigGroup, type ConfigWord } from '../../lib/emotionConfig'
 import { speak } from '../../lib/tts'
 import WordPicture from './WordPicture'
@@ -73,7 +73,7 @@ export default function SizeLine({ group, words, position, wordId, onChange }: P
                   key={w.id}
                   type="button"
                   className={`${styles.wordCard} ${on ? styles.on : ''}`}
-                  style={{ background: bg, color: textOn(bg) }}
+                  style={{ '--tone': bg, color: textOn(bg) } as CSSProperties}
                   aria-pressed={on}
                   onClick={() => pickWord(w)}
                 >

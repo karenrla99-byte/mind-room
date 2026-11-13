@@ -27,7 +27,9 @@
   border: var(--line);
   border-radius: 999px;
   background: var(--card);
-  box-shadow: 0 4px 0 var(--ink);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
+  box-shadow: var(--shadow-3d);
   text-decoration: none;
   font-family: var(--font-title);
   font-size: 1.2rem;
@@ -45,7 +47,7 @@
 .round:active,
 .home:active {
   transform: translateY(4px);
-  box-shadow: 0 0 0 var(--ink);
+  box-shadow: var(--shadow-press);
 }
 
 .round svg,

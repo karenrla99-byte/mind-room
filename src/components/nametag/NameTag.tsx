@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import { shade, textOn, type ConfigGroup, type EmotionConfig, type NameTagResult, type NamingLevel } from '../../lib/emotionConfig'
 import { speak } from '../../lib/tts'
 import SizeLine from './SizeLine'
@@ -76,7 +76,7 @@ export default function NameTag({ config, level, picture, only, onDone }: Props)
               key={g.key}
               type="button"
               className={styles.groupCard}
-              style={{ background: g.color, color: textOn(g.color) }}
+              style={{ '--tone': g.color, color: textOn(g.color) } as CSSProperties}
               onClick={() => pickGroup(g)}
             >
               <WordPicture image={g.image} color={g.color} />

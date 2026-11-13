@@ -83,6 +83,9 @@
 }
 
 .groupCard {
+  background: color-mix(in srgb, var(--tone, #fff) 78%, transparent);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
   flex: 0 1 clamp(120px, 12.4vw, 150px);
   min-width: 108px;
   display: flex;
@@ -91,7 +94,7 @@
   padding: 4px 4px 12px;
   border: var(--line);
   border-radius: 24px;
-  box-shadow: 0 6px 0 var(--ink);
+  box-shadow: var(--shadow-3d);
   font-family: var(--font-title);
   font-size: clamp(1.3rem, 3.4vh, 1.8rem);
   line-height: 1.1;
@@ -110,7 +113,7 @@
 
 .groupCard:active {
   transform: translateY(6px);
-  box-shadow: 0 0 0 var(--ink);
+  box-shadow: var(--shadow-press);
 }
 
 /* 2. 수직선 */
@@ -144,6 +147,9 @@
 }
 
 .wordCard {
+  background: color-mix(in srgb, var(--tone, #fff) 78%, transparent);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
   width: min(100%, 150px);
   min-height: 64px;
   display: flex;
@@ -152,7 +158,7 @@
   padding: 0 4px 8px;
   border: var(--line);
   border-radius: 18px;
-  box-shadow: 0 4px 0 var(--ink);
+  box-shadow: var(--shadow-3d);
   font-family: var(--font-title);
   font-size: clamp(0.82rem, 1.75vw, 1.25rem);
   line-height: 1.15;
@@ -167,7 +173,7 @@
 
 .on {
   transform: translateY(-6px) scale(1.07);
-  box-shadow: 0 8px 0 var(--ink);
+  box-shadow: var(--shadow-3d);
   outline: 4px solid var(--ink);
   outline-offset: 2px;
 }
@@ -210,9 +216,9 @@
   width: 68px;
   height: 68px;
   margin: -34px;
-  border: 4px solid var(--ink);
+  border: var(--line-in);
   border-radius: 50%;
-  box-shadow: 0 5px 0 var(--ink);
+  box-shadow: var(--shadow-3d);
   cursor: grab;
   transition: left 0.18s cubic-bezier(0.3, 1.5, 0.5, 1), background 0.15s;
 }
@@ -254,7 +260,9 @@
   border: var(--line);
   border-radius: 24px;
   background: var(--card);
-  box-shadow: 0 5px 0 var(--ink);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
+  box-shadow: var(--shadow-3d);
 }
 
 .sentence .sentencePic {
@@ -279,7 +287,7 @@
   padding: 8px 16px;
   border: 2.5px dashed var(--ink);
   border-radius: 16px;
-  background: var(--cream);
+  background: rgb(255 255 255 / 0.5);
   font: inherit;
   color: inherit;
 }
@@ -303,7 +311,9 @@
   border: var(--line);
   border-radius: 24px;
   background: var(--card);
-  box-shadow: 0 6px 0 var(--ink);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
+  box-shadow: var(--shadow-3d);
 }
 
 .tag .tagPic {
@@ -332,9 +342,11 @@
 .meter span {
   width: 30px;
   height: 22px;
-  border: 2.5px solid var(--ink);
+  border: var(--line-in);
   border-radius: 7px;
   background: var(--card);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
 }
 
 .tagReason {
@@ -370,7 +382,7 @@
   border: var(--line);
   border-radius: 20px;
   background: #fff;
-  box-shadow: 0 5px 0 var(--ink);
+  box-shadow: var(--shadow-3d);
   transform: rotate(-3deg);
 }
 

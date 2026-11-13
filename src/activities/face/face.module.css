@@ -13,10 +13,10 @@
   position: relative;
   width: min(calc(100vh - 190px), 54vw);
   aspect-ratio: 1;
-  border: 4px solid var(--ink);
+  border: var(--line-in);
   border-radius: 28px;
   background: #fff;
-  box-shadow: 0 6px 0 var(--ink);
+  box-shadow: var(--shadow-3d);
   overflow: hidden;
   touch-action: none;
 }
@@ -109,7 +109,7 @@
   gap: 10px;
   max-height: max(150px, calc(100vh - 540px));
   overflow-y: auto;
-  padding: 4px 4px 10px;
+  padding: 8px 10px 24px;
 }
 
 .two {
@@ -122,14 +122,16 @@
   border: var(--line);
   border-radius: 18px;
   background: var(--card);
-  box-shadow: 0 4px 0 var(--ink);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
+  box-shadow: var(--shadow-3d);
   touch-action: none;
   transition: transform 0.12s;
 }
 
 .option:active {
   transform: translateY(4px);
-  box-shadow: none;
+  box-shadow: var(--shadow-press);
 }
 
 .option[aria-pressed='true'] {
@@ -183,9 +185,11 @@
 
 .steps li {
   padding: 4px 14px;
-  border: 2.5px solid var(--ink);
+  border: var(--line-in);
   border-radius: 999px;
   background: var(--card);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
   font-weight: 700;
   opacity: 0.45;
 }
@@ -226,6 +230,8 @@
   border: var(--line);
   border-radius: 999px;
   background: var(--card);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
 }
 
 .tabs button {
@@ -254,9 +260,11 @@
   min-width: 52px;
   min-height: 48px;
   padding: 0 12px;
-  border: 2.5px solid var(--ink);
+  border: var(--line-in);
   border-radius: 14px;
   background: var(--card);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
   font-weight: 700;
 }
 
@@ -283,6 +291,9 @@
 }
 
 .mode {
+  background: color-mix(in srgb, var(--tone, #fff) 78%, transparent);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -293,13 +304,13 @@
   padding: 12px;
   border: var(--line);
   border-radius: 26px;
-  box-shadow: 0 6px 0 var(--ink);
+  box-shadow: var(--shadow-3d);
   transition: transform 0.14s cubic-bezier(0.3, 1.6, 0.5, 1), box-shadow 0.14s;
 }
 
 .mode:active {
   transform: translateY(6px);
-  box-shadow: none;
+  box-shadow: var(--shadow-press);
 }
 
 .mode strong {
@@ -326,6 +337,8 @@
   border: var(--line);
   border-radius: 50%;
   background: var(--card);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
   font-family: var(--font-title);
   font-size: 1.3rem !important;
 }

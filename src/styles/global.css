@@ -1,11 +1,21 @@
 :root {
   --cream: #fff8ee;
   --ink: #3a2e2a;
-  --card: #ffffff;
   --ink-soft: #7a6a63;
-  --line: 3px solid var(--ink);
-  --radius: 20px;
-  --pop: 0 5px 0 var(--ink);
+
+  /* 유리: 뒤가 비치는 흰 판 + 흐림 */
+  --card: rgb(255 255 255 / 0.55);
+  --glass: blur(18px) saturate(1.5);
+  --line: 1.5px solid rgb(255 255 255 / 0.9);
+  --line-in: 1.5px solid rgb(58 46 42 / 0.2);
+  --radius: 22px;
+
+  /* 3D: 아래로 떨어지는 부드러운 그림자 + 위쪽 빛, 아래쪽 어둠 */
+  --shadow-3d: 0 14px 26px -10px rgb(96 66 40 / 0.45), 0 4px 0 rgb(96 66 40 / 0.16),
+    inset 0 2px 1px rgb(255 255 255 / 0.95), inset 0 14px 18px -12px rgb(255 255 255 / 0.85),
+    inset 0 -12px 16px -12px rgb(96 66 40 / 0.3);
+  --shadow-press: 0 3px 8px -3px rgb(96 66 40 / 0.4), inset 0 4px 10px rgb(96 66 40 / 0.22);
+  --pop: var(--shadow-3d);
 
   --joy: #f9c74f;
   --surprise: #f8961e;
@@ -33,13 +43,24 @@ body,
 }
 
 body {
-  background: var(--cream);
+  /* 유리 뒤로 비치는 말랑한 색 구름 */
+  background:
+    radial-gradient(55vmax 55vmax at 4% 6%, #ffe0a8 0%, transparent 62%),
+    radial-gradient(48vmax 48vmax at 98% 10%, #ffcfe0 0%, transparent 60%),
+    radial-gradient(56vmax 56vmax at 92% 98%, #c6e2ff 0%, transparent 62%),
+    radial-gradient(46vmax 46vmax at 6% 96%, #d3f0c8 0%, transparent 60%),
+    var(--cream);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 18px;
   line-height: 1.5;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
+}
+
+h1 {
+  text-shadow: 0 2px 0 rgb(255 255 255 / 0.9), 0 8px 14px rgb(96 66 40 / 0.18);
 }
 
 h1,
@@ -75,7 +96,7 @@ a {
   outline-offset: 3px;
 }
 
-/* 스티커 버튼: 갈색 테두리 + 아래로 밀린 단색 그림자, 누르면 쏙 들어감 */
+/* 젤리 버튼: 반투명 유리 + 통통한 3D, 누르면 쏙 들어감 */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -87,7 +108,9 @@ a {
   border: var(--line);
   border-radius: var(--radius);
   background: var(--card);
-  box-shadow: var(--pop);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
+  box-shadow: var(--shadow-3d);
   font-family: var(--font-title);
   font-size: 1.4rem;
   text-decoration: none;
@@ -95,12 +118,13 @@ a {
 }
 
 .btn:active {
-  transform: translateY(5px);
-  box-shadow: 0 0 0 var(--ink);
+  transform: translateY(4px) scale(0.98);
+  box-shadow: var(--shadow-press);
 }
 
 .btn-yellow {
-  background: var(--joy);
+  background: linear-gradient(180deg, #ffe08a 0%, #f9c74f 60%, #f3b632 100%);
+  border-color: rgb(255 240 200 / 0.9);
 }
 
 @media (prefers-reduced-motion: reduce) {
