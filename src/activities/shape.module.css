@@ -1,0 +1,46 @@
+/* 모양 몸통: 색 판(모양대로 오려 냄) 위에 그림을 곱해서 선만 보이게 */
+.body {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+  transition: left 0.2s, top 0.2s, width 0.2s, height 0.2s;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  transition: background 0.2s;
+}
+
+.body img {
+  position: absolute;
+  max-width: none;
+  mix-blend-mode: multiply;
+}
+
+.shapes {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.colors {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  gap: 10px;
+  justify-content: center;
+  padding: 8px;
+}
+
+.colors button {
+  width: clamp(48px, 7.4vh, 64px);
+  height: clamp(48px, 7.4vh, 64px);
+  border: var(--line);
+  border-radius: 50%;
+  box-shadow: var(--shadow-3d);
+  transition: transform 0.12s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.colors button[aria-checked='true'] {
+  transform: scale(1.16);
+  outline: 4px solid var(--ink);
+  outline-offset: 3px;
+}

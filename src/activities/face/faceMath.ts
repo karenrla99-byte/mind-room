@@ -86,16 +86,11 @@ function load(src: string) {
   return cache.get(src)!
 }
 
-/** 얼굴을 PNG 로 (흰 바탕 1000×1000) */
-export async function renderFace(parts: Placed[]): Promise<Blob> {
-  const size = 1000
-  const k = size / FACE_CANVAS
-  const canvas = document.createElement('canvas')
-  canvas.width = canvas.height = size
-  const ctx = canvas.getContext('2d')!
-  ctx.fillStyle = '#FFFFFF'
-  ctx.fillRect(0, 0, size, size)
-  for (const p of [place(BASE.id), ...parts]) {
+export const loadImage = load
+
+/** 놓인 부품들을 캔버스에 그리기 (k = 캔버스 크기 / 2000) */
+export async function drawPlaced(ctx: CanvasRenderingContext2D, parts: Placed[], k: number) {
+  for (const p of parts) {
     const part = partById(p.id)
     const img = await load(part.image)
     const [x0, y0, x1, y1] = bboxOf(p.id)
@@ -107,7 +102,21 @@ export async function renderFace(parts: Placed[]): Promise<Blob> {
     ctx.drawImage(img, x0, y0, x1 - x0, y1 - y0, (-home.w / 2) * k, (-home.h / 2) * k, home.w * k, home.h * k)
     ctx.restore()
   }
-  return new Promise((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('toBlob'))), 'image/png'))
+}
+
+export const canvasBlob = (canvas: HTMLCanvasElement) =>
+  new Promise<Blob>((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('toBlob'))), 'image/png'))
+
+/** 얼굴을 PNG 로 (흰 바탕 1000×1000) */
+export async function renderFace(parts: Placed[]): Promise<Blob> {
+  const size = 1000
+  const canvas = document.createElement('canvas')
+  canvas.width = canvas.height = size
+  const ctx = canvas.getContext('2d')!
+  ctx.fillStyle = '#FFFFFF'
+  ctx.fillRect(0, 0, size, size)
+  await drawPlaced(ctx, [place(BASE.id), ...parts], size / FACE_CANVAS)
+  return canvasBlob(canvas)
 }
 
 // ───────── 따라 만들기용 표정 ─────────
