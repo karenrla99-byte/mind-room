@@ -11,6 +11,7 @@ import RoomHome from './pages/student/RoomHome'
 import Flow from './pages/student/Flow'
 import SoloHome from './pages/student/SoloHome'
 import Gallery from './pages/gallery/Gallery'
+import Records from './pages/teacher/Records'
 import EmotionEdit from './pages/teacher/EmotionEdit'
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="join/:code" element={<PickName />} />
         <Route path="room/:code" element={<RoomHome />} />
         <Route path="room/:code/do/:activity" element={<Flow />} />
+        <Route path="teacher/room/:id/records" element={<Records />} />
         <Route path="teacher/room/:id/emotions" element={<EmotionEdit />} />
         <Route path="gallery/:code" element={<Gallery />} />
         <Route path="solo" element={<SoloHome />} />

@@ -1,0 +1,403 @@
+.wide {
+  width: min(100%, 1100px);
+}
+
+.bar,
+.head {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.total {
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.seg {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 4px;
+  border: var(--line);
+  border-radius: 999px;
+  background: var(--btn);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
+  box-shadow: var(--shadow-btn);
+}
+
+.seg button {
+  min-height: 48px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+}
+
+.seg button[aria-checked='true'],
+.seg button[aria-selected='true'] {
+  background: var(--ink);
+  color: #fff;
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.collage {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wide select {
+  min-height: 44px;
+  padding: 6px 10px;
+  border: var(--line-in);
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.6);
+  font: inherit;
+  color: inherit;
+}
+
+/* 큰 감정별 개수 띠 */
+.stack {
+  width: 100%;
+  display: flex;
+  min-height: 36px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1.5px rgb(58 46 42 / 0.15);
+}
+
+.stack span {
+  flex-basis: 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.rows {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rows li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border: var(--line-in);
+  border-radius: 14px;
+  background: rgb(255 255 255 / 0.5);
+}
+
+.rows img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+  border: var(--line-in);
+}
+
+.when {
+  min-width: 9.5em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.group {
+  padding: 1px 10px;
+  border: 2.5px solid;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.chip {
+  display: inline-block;
+  padding: 1px 12px 2px;
+  border-radius: 999px;
+  background: #e6e1dc;
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+}
+
+.meter {
+  display: inline-flex;
+  gap: 3px;
+  vertical-align: middle;
+}
+
+.meter i {
+  width: 16px;
+  height: 12px;
+  border: 1.5px solid rgb(58 46 42 / 0.55);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.act {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.reason {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* 날짜별 */
+.dayGroups {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.dayGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border-left: 8px solid;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.5);
+}
+
+.dayGroup strong {
+  font-family: var(--font-title);
+  font-weight: 400;
+  font-size: 1.15rem;
+}
+
+.person {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+/* 흐름 그래프 */
+.chartWrap {
+  width: 100%;
+  overflow-x: auto;
+  padding: 8px;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.grid {
+  stroke: #e6ded6;
+  stroke-width: 1;
+}
+
+.axis {
+  font-size: 13px;
+  font-weight: 700;
+  fill: #7a6a63;
+}
+
+.wordLabel {
+  font-size: 11.5px;
+  font-weight: 700;
+  fill: #3a2e2a;
+}
+
+.flowBar {
+  stroke: rgb(58 46 42 / 0.35);
+  stroke-width: 1.5;
+}
+
+.line {
+  fill: none;
+  stroke: #3a2e2a;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.dot {
+  fill: #fff;
+  stroke: #3a2e2a;
+  stroke-width: 2.5;
+}
+
+/* ───────── 인쇄 ───────── */
+.print {
+  display: none;
+}
+
+@media print {
+  .print {
+    display: block;
+    color: #000;
+  }
+
+  .sheet {
+    break-after: page;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sheet:last-child {
+    break-after: auto;
+  }
+
+  .sheet header h1 {
+    font-size: 22pt;
+    text-shadow: none;
+  }
+
+  .sheet header p {
+    font-size: 11pt;
+    color: #555;
+  }
+
+  .sheet footer {
+    margin-top: auto;
+    padding-top: 8px;
+    text-align: center;
+    font-size: 9pt;
+    color: #666;
+  }
+
+  .stack {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .chip,
+  .meter i,
+  .flowBar {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .rows li {
+    break-inside: avoid;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    padding: 3px 0;
+    font-size: 10pt;
+  }
+
+  .rows img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .chartWrap {
+    overflow: visible;
+    padding: 0;
+  }
+
+  .chartWrap svg {
+    width: 100% !important;
+    height: auto;
+    max-height: 62mm;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10.5pt;
+}
+
+.table th,
+.table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table td:nth-child(3) {
+  width: 38%;
+}
+
+.table .stack {
+  min-height: 22px;
+}
+
+.table .stack span {
+  font-size: 8.5pt;
+  padding: 1px 3px;
+}
+
+.collageGrid {
+  display: grid;
+  gap: 6mm;
+}
+
+.per4 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.per6 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.per9 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.collageGrid figure {
+  margin: 0;
+  break-inside: avoid;
+  text-align: center;
+}
+
+.collageGrid img {
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border: 1px solid #999;
+  border-radius: 4mm;
+}
+
+.per4 img {
+  height: 100mm;
+}
+
+.per6 img {
+  height: 64mm;
+}
+
+.per9 img {
+  height: 54mm;
+}
+
+.collageGrid figcaption {
+  margin-top: 2mm;
+  font-size: 11pt;
+  font-weight: 700;
+}

@@ -11,7 +11,7 @@ export default function Layout() {
 
   return (
     <div className={styles.shell}>
-      <header className={styles.top}>
+      <header className={`${styles.top} no-print`}>
         <button
           type="button"
           className={styles.round}
@@ -52,7 +52,7 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      <footer className={styles.foot}>
+      <footer className={`${styles.foot} no-print`}>
         © 2026 특수교사 은티 ·{' '}
         {isHome ? (
           <a href={INSTAGRAM} target="_blank" rel="noreferrer">

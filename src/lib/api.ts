@@ -118,6 +118,8 @@ export const api = {
       p_group_key: w.groupKey, p_group_name: w.groupName, p_color: w.color,
       p_word: w.word, p_intensity: w.intensity, p_reason: w.reason,
     }),
+  teacherGetRecords: (id: string, key: string, from: string | null, to: string | null) =>
+    rpc<Work[]>('teacher_get_records', { p_room_id: id, p_teacher_key: key, p_from: from, p_to: to }),
   getWorks: (roomId: string) => rpc<Work[]>('get_works', { p_room_id: roomId }),
   deleteWorks: (id: string, key: string, ids: string[]) =>
     rpc<string[]>('delete_works', { p_room_id: id, p_teacher_key: key, p_ids: ids }),

@@ -231,6 +231,7 @@ export default function RoomManage() {
           {qr && <img src={qr} alt="입장 QR 코드" />}
           <button type="button" className="btn btn-yellow" onClick={() => setShowBig(true)}>크게 보여 주기</button>
           <Link to={`/gallery/${room.code}`} className="btn">전시방 열기</Link>
+          <Link to={`/teacher/room/${id}/records`} className="btn">기록방 열기</Link>
         </div>
       </section>
 

@@ -141,3 +141,26 @@ a {
     transition: none !important;
   }
 }
+
+/* 인쇄: 화면용 꾸밈과 버튼은 빼고 흰 종이에 */
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+@media print {
+  html,
+  body,
+  #root {
+    height: auto;
+  }
+
+  body {
+    background: #fff !important;
+    font-size: 11pt;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
