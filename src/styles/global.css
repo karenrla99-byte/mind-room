@@ -17,6 +17,12 @@
   --shadow-press: 0 3px 8px -3px rgb(96 66 40 / 0.4), inset 0 4px 10px rgb(96 66 40 / 0.22);
   --pop: var(--shadow-3d);
 
+  /* 버튼: 더 투명한 유리. 가장자리 빛과 아래 그림자만 남겨 뒤가 비침 */
+  --btn: rgb(255 255 255 / 0.26);
+  --shadow-btn: 0 12px 22px -12px rgb(96 66 40 / 0.5), 0 3px 0 rgb(96 66 40 / 0.12),
+    inset 0 1.5px 0 rgb(255 255 255 / 0.95), inset 0 0 0 1px rgb(255 255 255 / 0.35),
+    inset 0 -10px 14px -12px rgb(96 66 40 / 0.26);
+
   --joy: #f9c74f;
   --surprise: #f8961e;
   --anger: #e5484d;
@@ -107,10 +113,10 @@ a {
   padding: 10px 26px;
   border: var(--line);
   border-radius: var(--radius);
-  background: var(--card);
+  background: var(--btn);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
-  box-shadow: var(--shadow-3d);
+  box-shadow: var(--shadow-btn);
   font-family: var(--font-title);
   font-size: 1.4rem;
   text-decoration: none;
@@ -123,7 +129,7 @@ a {
 }
 
 .btn-yellow {
-  background: linear-gradient(180deg, #ffe08a 0%, #f9c74f 60%, #f3b632 100%);
+  background: linear-gradient(180deg, rgb(255 224 138 / 0.62) 0%, rgb(249 199 79 / 0.62) 60%, rgb(243 182 50 / 0.68) 100%);
   border-color: rgb(255 240 200 / 0.9);
 }
 

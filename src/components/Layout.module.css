@@ -26,10 +26,10 @@
   min-width: 64px;
   border: var(--line);
   border-radius: 999px;
-  background: var(--card);
+  background: var(--btn);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
-  box-shadow: var(--shadow-3d);
+  box-shadow: var(--shadow-btn);
   text-decoration: none;
   font-family: var(--font-title);
   font-size: 1.2rem;

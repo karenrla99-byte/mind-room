@@ -121,10 +121,10 @@
   padding: 8px 12px;
   border: var(--line);
   border-radius: 18px;
-  background: var(--card);
+  background: var(--btn);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
-  box-shadow: var(--shadow-3d);
+  box-shadow: var(--shadow-btn);
   touch-action: none;
   transition: transform 0.12s;
 }
@@ -135,7 +135,7 @@
 }
 
 .option[aria-pressed='true'] {
-  background: #fce3a7;
+  background: rgb(249 199 79 / 0.5);
 }
 
 /* 고르는 칸의 부품 그림 */
@@ -229,7 +229,7 @@
   padding: 4px;
   border: var(--line);
   border-radius: 999px;
-  background: var(--card);
+  background: var(--btn);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
 }
@@ -262,7 +262,7 @@
   padding: 0 12px;
   border: var(--line-in);
   border-radius: 14px;
-  background: var(--card);
+  background: var(--btn);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
   font-weight: 700;

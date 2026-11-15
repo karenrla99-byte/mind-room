@@ -78,10 +78,10 @@
   padding: 2px;
   border: var(--line);
   border-radius: 18px;
-  background: var(--card);
+  background: var(--btn);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
-  box-shadow: var(--shadow-3d);
+  box-shadow: var(--shadow-btn);
   font-size: 0.72rem;
   font-weight: 700;
   line-height: 1.1;
@@ -99,7 +99,7 @@
 
 .tool[aria-checked='true'],
 .tool[aria-pressed='true'] {
-  background: #fce3a7;
+  background: rgb(249 199 79 / 0.5);
   outline: 3px solid var(--ink);
   outline-offset: 2px;
 }

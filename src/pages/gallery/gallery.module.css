@@ -47,7 +47,7 @@
   padding: 4px;
   border: var(--line);
   border-radius: 999px;
-  background: var(--card);
+  background: var(--btn);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
 }
@@ -72,10 +72,10 @@
   padding: 0 18px;
   border: var(--line);
   border-radius: 999px;
-  background: var(--card);
+  background: var(--btn);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
-  box-shadow: var(--shadow-3d);
+  box-shadow: var(--shadow-btn);
   font-family: var(--font-title);
   font-size: 1.1rem;
 }
@@ -311,10 +311,10 @@
   height: clamp(56px, 8vw, 84px);
   border: var(--line);
   border-radius: 50%;
-  background: var(--card);
+  background: var(--btn);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
-  box-shadow: var(--shadow-3d);
+  box-shadow: var(--shadow-btn);
   font-size: 2.6rem;
   line-height: 0.8;
   padding-bottom: 8px;

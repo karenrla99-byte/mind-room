@@ -95,10 +95,10 @@
   aspect-ratio: 1;
   border: var(--line);
   border-radius: 22px;
-  background: var(--card);
+  background: var(--btn);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
-  box-shadow: var(--shadow-3d);
+  box-shadow: var(--shadow-btn);
   font-family: var(--font-title);
   font-size: clamp(2rem, 6.5vh, 3.4rem);
   line-height: 1;
@@ -109,11 +109,11 @@
 .key:active {
   transform: translateY(5px);
   box-shadow: var(--shadow-press);
-  background: #fce3a7;
+  background: rgb(249 199 79 / 0.5);
 }
 
 .backKey {
-  background: #f7c8c9;
+  background: rgb(229 72 77 / 0.28);
 }
 
 .backKey svg {

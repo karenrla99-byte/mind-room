@@ -319,7 +319,7 @@
   padding: 0 12px;
   border: var(--line-in);
   border-radius: 12px;
-  background: var(--card);
+  background: var(--btn);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
   font-family: var(--font-body);
@@ -443,7 +443,7 @@
   padding: 12px 16px;
   border: var(--line-in);
   border-radius: 16px;
-  background: var(--card);
+  background: var(--btn);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
   text-align: left;
